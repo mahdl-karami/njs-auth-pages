@@ -10,10 +10,10 @@ function ContentsBox() {
   return (
     <div className="box-content">
       <div className="form-buttons">
-        <button type="button" onClick={() => setFormType("SignIn")} className={formType == "signIn" ? "active" : ""}>
+        <button type="button" onClick={() => setFormType("SignIn")} className={formType == "SignIn" ? "active" : ""}>
           Login
         </button>
-        <button type="button" onClick={() => setFormType("SignUp")} className={formType == "signIn" ? "" : "active"}>
+        <button type="button" onClick={() => setFormType("SignUp")} className={formType == "SignIn" ? "" : "active"}>
           Signup
         </button>
       </div>
