@@ -1,5 +1,3 @@
-/** start animations */
-
 /** image 00 :  outline */
 .image-0 {
   animation: up-down 2s linear 0s infinite alternate;
@@ -17,7 +15,6 @@
   animation: left-right 3s linear 0s infinite alternate;
 }
 
-/** keyFrames */
 @keyframes up-down {
   0% {
     top: 40%;
@@ -42,12 +39,3 @@
     opacity: 60%;
   }
 }
-@keyframes small-big {
-  0% {
-    height: 400px;
-  }
-  100% {
-    height: 450px;
-  }
-}
-/** end animations */

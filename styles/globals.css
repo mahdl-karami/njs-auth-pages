@@ -193,3 +193,30 @@ button {
     font-size: 1.3em;
   }
 }
+
+@media only screen and (max-width: 850px) {
+  /** start form  */
+  .box {
+    width: 600px;
+  }
+  .animations-box-images {
+    img {
+      height: 300px;
+    }
+  }
+  /** end form  */
+}
+@media only screen and (max-width: 650px) {
+  /** start form  */
+  .box {
+    width: 380px;
+  }
+  .box-content {
+    width: 100%;
+    padding: 0 0 2rem;
+  }
+  .animations-box {
+    display: none;
+  }
+  /** end form  */
+}

@@ -1,5 +1,5 @@
 //? import helpers
-import { images } from "@/helpers/images";
+import { images } from "@/helpers/Images";
 //? import components
 import Image from "next/image";
 

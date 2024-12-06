@@ -1,7 +1,11 @@
-import ChangeHandler from "@/helpers/ChangeHandler";
+//? import hooks
 import { useEffect, useState } from "react";
+//? import helpers
+import ChangeHandler from "@/helpers/ChangeHandler";
+//? import icons
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+
 function Form({ formType }) {
   const [formData, setFormData] = useState({
     email: "",
@@ -9,6 +13,7 @@ function Form({ formType }) {
   });
   const [passVisibility, setPassVisibility] = useState(false);
   useEffect(() => {
+    //! reset states
     setFormData({
       email: "",
       password: "",
