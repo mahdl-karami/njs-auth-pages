@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 //? import helpers
 import ChangeHandler from "@/helpers/ChangeHandler";
+import submitHandler from "@/helpers/SubmitHandler";
 //? import icons
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -21,7 +22,7 @@ function Form({ formType }) {
     setPassVisibility(false);
   }, [formType]);
   return (
-    <form className="form" onChange={(ev) => ChangeHandler(ev, setFormData)}>
+    <form className="form" onChange={(ev) => ChangeHandler(ev, setFormData)} onSubmit={(ev) => submitHandler(ev, formType, formData)}>
       <h3>{formType == "SignUp" ? "Create Account" : "Login To Account"}</h3>
       <input value={formData.email} name="email" placeholder="Email" type="email" />
       <div className="visibility">
