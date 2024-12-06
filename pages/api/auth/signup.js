@@ -1,7 +1,10 @@
 import ConnectToDB from "@/helpers/ConnectToDB";
+import { userModel } from "@/models/userModel";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return;
+
+  const { email, password } = req.body;
 
   //! connect to database
   try {
@@ -16,7 +19,27 @@ export default async function handler(req, res) {
   }
   //! end connect to database
 
-  //! check user email 
+  //! inputs validation
+  if (!email || !password) return res.status(422).json({ status: "FAILED", message: "Invalid data!" });
+  //! end inputs validation
 
-  //! end check user email 
+  //! check user email && create user in database
+  const user = await userModel.findOne({ email });
+  if (user) {
+    res.status(422).json({
+      status: "FAILED",
+      message: "User with this email exist, please login.",
+    });
+  } else {
+    try {
+      await userModel.create({ email, password });
+      console.log("User created.");
+      res.status(200).json({ status: "SUCCESS", message: "User created.", data: { email } });
+    } catch (error) {
+      console.log("Can't create user!");
+      console.log(error);
+      return res.status(500).json({ status: "FAILED", message: "Can't create user." });
+    }
+  }
+  //! end check user email
 }
