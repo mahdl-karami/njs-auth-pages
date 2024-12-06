@@ -18,6 +18,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  transition: all linear 0.3s;
 }
 
 body {
@@ -29,7 +30,14 @@ body {
   align-items: center;
 }
 
+button {
+  border: none;
+  color: var(--foreground);
+  cursor: pointer;
+}
+
 .box {
+  display: flex;
   width: 800px;
   height: 500px;
   background: #3f7fe159;
@@ -70,5 +78,107 @@ body {
     font-size: 0.9em;
     text-align: center;
     padding-bottom: 3rem;
+  }
+}
+
+/* box content */
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  button {
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 200;
+  }
+  h3 {
+    font-weight: 500;
+    padding: 0 0 2rem 0;
+  }
+  input {
+    width: 100%;
+    font-size: 1.2em;
+    color: #fff;
+    margin: 0.5rem 0;
+    padding: 0.6rem 1.2rem;
+    outline: none;
+    border: none;
+    background: #ffffff40;
+    box-shadow: 0 0 10px 0 #1b25b07e;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border-radius: 10px;
+    &::placeholder {
+      color: #ffffffb7;
+    }
+  }
+  a {
+    color: #fff;
+    text-decoration: none;
+    text-align: end;
+    width: 100%;
+  }
+}
+.box-content {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.form-buttons {
+  position: fixed;
+  top: 20px;
+  button {
+    border-radius: 15px;
+    padding: 0.2rem 1.4rem;
+    box-shadow: 0 0 10px 0 #1b25b07e;
+    background: #ffffff40;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    margin: auto 5px;
+  }
+  .active {
+    background: #373737 !important;
+  }
+}
+.social-media-icons {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  span {
+    width: 50px;
+    height: 50px;
+    margin: 0 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff40;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border-radius: 50%;
+    border: 1px solid #ffffff42;
+    box-shadow: 0 0 10px 0 #1b25b07e;
+    cursor: pointer;
+  }
+}
+.submit-btn {
+  width: 100%;
+  font-size: 1em;
+  color: #fff;
+  margin: 0.5rem 0 2rem 0;
+  padding: 1rem 1.2rem;
+  background: #373737;
+  box-shadow: 0 2px 20px 0 #000000b5;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  transition: all linear 0.2s;
+  gap: 10px;
+  &:hover {
+    gap: 15px;
   }
 }
