@@ -1,9 +1,13 @@
-import React from 'react'
+import AnimationBox from "@/components/AnimationsBox";
+import React from "react";
 
 function index() {
   return (
-    <div>index</div>
-  )
+    <>
+      <div></div>
+      <AnimationBox />
+    </>
+  );
 }
 
-export default index
+export default index;

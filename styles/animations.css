@@ -1,0 +1,53 @@
+/** start animations */
+
+/** image 00 :  outline */
+.image-0 {
+  animation: up-down 2s linear 0s infinite alternate;
+}
+/** image 02 : rocket */
+.image-2 {
+  animation: up-down 2s linear 0s infinite alternate;
+}
+/** image 03 : stars */
+.image-3 {
+  animation: tik-tik 1s ease-in 0s infinite alternate;
+}
+/** image 04 : cloud */
+.image-4 {
+  animation: left-right 3s linear 0s infinite alternate;
+}
+
+/** keyFrames */
+@keyframes up-down {
+  0% {
+    top: 40%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+@keyframes left-right {
+  0% {
+    left: 40%;
+  }
+  100% {
+    right: 60%;
+  }
+}
+@keyframes tik-tik {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 60%;
+  }
+}
+@keyframes small-big {
+  0% {
+    height: 400px;
+  }
+  100% {
+    height: 450px;
+  }
+}
+/** end animations */
