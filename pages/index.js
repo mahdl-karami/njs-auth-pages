@@ -1,12 +1,12 @@
 import AnimationBox from "@/components/AnimationsBox";
-import BoxContent from "@/components/BoxContent";
+import ContentsBox from "@/components/ContentsBox";
 import React from "react";
 
 function index() {
   return (
     <>
       <AnimationBox />
-      <BoxContent />
+      <ContentsBox />
     </>
   );
 }

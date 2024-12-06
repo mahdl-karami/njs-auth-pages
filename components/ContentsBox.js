@@ -1,14 +1,16 @@
-//? import icons
+//? import hooks
 import { useState } from "react";
+//? import icons
 import { FaGoogle, FaFacebookF, FaTwitter, FaGithub } from "react-icons/fa";
+//? import components
 import Form from "./Form";
 
-function BoxContent() {
+function ContentsBox() {
   const [formType, setFormType] = useState("SignUp");
   return (
     <div className="box-content">
       <div className="form-buttons">
-        <button type="button" onClick={() => setFormType("signIn")} className={formType == "signIn" ? "active" : ""}>
+        <button type="button" onClick={() => setFormType("SignIn")} className={formType == "signIn" ? "active" : ""}>
           Login
         </button>
         <button type="button" onClick={() => setFormType("SignUp")} className={formType == "signIn" ? "" : "active"}>
@@ -34,4 +36,4 @@ function BoxContent() {
   );
 }
 
-export default BoxContent;
+export default ContentsBox;
