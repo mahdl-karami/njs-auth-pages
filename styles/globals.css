@@ -182,3 +182,14 @@ button {
     gap: 15px;
   }
 }
+.visibility {
+  position: relative;
+  button {
+    background: none;
+    position: absolute;
+    right: 0.5rem;
+    top: 55%;
+    transform: translate(0, -50%);
+    font-size: 1.3em;
+  }
+}
