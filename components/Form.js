@@ -38,10 +38,12 @@ function Form({ formType }) {
     });
     setPassVisibility(false);
   }, [formType]);
-
   useEffect(() => {
-    if (res?.status === "SUCCESS") router.push("/account/dashbord");
+    //! successfull respons
+    console.log(res);
+    // if (res?.status === "SUCCESS") router.push("/account/dashbord");
   }, [res]);
+
   return (
     <form className="form" onChange={(ev) => ChangeHandler(ev, setFormData)} onSubmit={(ev) => submitHandler(ev)}>
       <h3>{formType == "SignUp" ? "Create Account" : "Login To Account"}</h3>
