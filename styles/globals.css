@@ -39,3 +39,36 @@ body {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.508);
 }
+
+/* AnimationsBox */
+.animations-box {
+  width: 55%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #ffffff4d;
+  box-shadow: 0 8px 32px 0 #1f26875e;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border-radius: 10px 50px 90px 10px;
+
+  img {
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 400px;
+  }
+
+  p {
+    width: 60%;
+    font-size: 0.9em;
+    text-align: center;
+    padding-bottom: 3rem;
+  }
+}
