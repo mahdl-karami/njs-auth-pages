@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   //! end connect to database
 
   //! inputs validation
-  if (!email || !password) return res.status(422).json({ status: "FAILED", message: "Invalid data!" });
+  if (!email || !password) return res.status(422).json({ error: "invalidData", status: "FAILED", message: "Invalid data!" });
   //! end inputs validation
 
   //! check user email && create user in database
@@ -29,6 +29,7 @@ export default async function handler(req, res) {
     res.status(422).json({
       status: "FAILED",
       message: "User with this email exist, please login.",
+      error: "userExist",
     });
   } else {
     try {

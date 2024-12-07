@@ -183,7 +183,6 @@ button {
   }
 }
 .visibility {
-  position: relative;
   button {
     background: none;
     position: absolute;
@@ -192,6 +191,24 @@ button {
     transform: translate(0, -50%);
     font-size: 1.3em;
   }
+}
+
+.inputBox {
+  position: relative;
+  margin-bottom: 10px;
+  input {
+    border: solid 2px #ffffff70;
+  }
+  input.errorBox {
+    border: #ff0037 2px solid;
+  }
+}
+.error {
+  color: #ff0037;
+  position: absolute;
+  bottom: -10px;
+  left: 10px;
+  font-size: 0.8em;
 }
 
 @media only screen and (max-width: 850px) {
