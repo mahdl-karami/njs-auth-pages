@@ -15,12 +15,7 @@ function Form({ formType }) {
   });
   const [passVisibility, setPassVisibility] = useState(false);
   const [res, setRes] = useState(null);
-  const [error, setError] = useState({
-    invalidData: false,
-    userExist: false,
-    userNotExist: false,
-    incorrectPassword: false,
-  });
+  const [error, setError] = useState({});
 
   function submitHandler(ev) {
     ev.preventDefault();
@@ -36,40 +31,44 @@ function Form({ formType }) {
       .then((json) => setRes(json));
   }
 
+  //! reset states
   useEffect(() => {
-    //! reset states
     setFormData({
       email: "",
       password: "",
     });
     setPassVisibility(false);
-    setError({
-      invalidData: false,
-      userExist: false,
-      userNotExist: false,
-      incorrectPassword: false,
-    });
+    setRes(null);
+    setError({});
   }, [formType]);
+  //! reset invalid data errors
   useEffect(() => {
-    //! successfull respons
-    console.log(res);
-    setError((prevS) => ({ ...prevS, [res?.error]: res?.message }));
-    // if (res?.status === "SUCCESS") router.push("/account/dashbord");
+    if (error?.invalidData) setError({ invalidPassword: true });
+    else setError((prevS) => ({ ...prevS, ["invalidEmail"]: false }));
+  }, [formData.email]);
+  useEffect(() => {
+    if (error?.invalidData) setError({ invalidPassword: true });
+    else setError((prevS) => ({ ...prevS, ["invalidPassword"]: false }));
+  }, [formData.password]);
+  //! check response (success or error)
+  useEffect(() => {
+    if (res?.error) setError({ [res?.error]: true });
+    if (res?.status == "SUCCESS") setError({});
   }, [res]);
 
   return (
     <form className="form" onChange={(ev) => ChangeHandler(ev, setFormData)} onSubmit={(ev) => submitHandler(ev)}>
       <h3>{formType == "SignUp" ? "Create Account" : "Login To Account"}</h3>
       <div className="inputBox">
-        <input className={error.invalidData || error.userExist || error.userNotExist ? "errorBox" : ""} value={formData.email} name="email" placeholder="Email" type="email" />
-        {error.invalidData || error.userExist || error.userNotExist ? <p className="error">{error[res.error]}</p> : null}
+        <input className={error.invalidData || error.userExist || error.userNotExist || error.invalidEmail ? "errorBox" : ""} value={formData.email} name="email" placeholder="Email" type="email" />
+        {error.invalidData || error.userExist || error.userNotExist || error.invalidEmail ? <p className="error">{res?.message}</p> : null}
       </div>
       <div className="visibility inputBox">
-        <input className={error.incorrectPassword ? "errorBox" : ""} value={formData.password} name="password" placeholder="Password" type={passVisibility ? "text" : "password"}></input>
+        <input className={error.incorrectPassword || error.invalidData || error.invalidPassword ? "errorBox" : ""} value={formData.password} name="password" placeholder="Password" type={passVisibility ? "text" : "password"}></input>
         <button type="button" onClick={() => setPassVisibility((prevS) => !prevS)}>
           {passVisibility ? <AiFillEye /> : <AiFillEyeInvisible />}
         </button>
-        {error.incorrectPassword ? <p className="error">{error[res.error]}</p> : null}
+        {error.incorrectPassword || error.invalidData || error.invalidPassword ? <p className="error">{res.message}</p> : null}
       </div>
       <a href="#">Need Help ? </a>
       <button className="submit-btn">

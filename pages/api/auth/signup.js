@@ -20,7 +20,12 @@ export default async function handler(req, res) {
   //! end connect to database
 
   //! inputs validation
-  if (!email || !password) return res.status(422).json({ error: "invalidData", status: "FAILED", message: "Invalid data!" });
+  if (!email || !password)
+    return res.status(422).json({
+      error: !email && !password ? "invalidData" : !email ? "invalidEmail" : "invalidPassword",
+      status: "FAILED",
+      message: "Please enter valid value!",
+    });
   //! end inputs validation
 
   //! check user email && create user in database
