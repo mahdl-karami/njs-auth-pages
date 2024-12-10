@@ -1,6 +1,8 @@
 import { HashPassword } from "@/helpers/BcryptPassword";
 import ConnectToDB from "@/helpers/ConnectToDB";
 import { userModel } from "@/models/userModel";
+import { createJWT } from "@/helpers/JsonWebToken";
+import { serialize } from "cookie";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return;
@@ -43,7 +45,20 @@ export default async function handler(req, res) {
     try {
       await userModel.create({ email, password: hashedPassword });
       console.log("User created.");
-      res.status(200).json({ status: "SUCCESS", message: "User created.", data: { email } });
+      //! JWT and cookie
+      const token = createJWT({ email }, process.env.JWT_SECRET_KEY);
+      res
+        .status(200)
+        .setHeader(
+          "Set-Cookie",
+          serialize("token", token, {
+            httpOnly: true,
+            maxAge: 24 * 60 * 60,
+            path: "/",
+          })
+        )
+        .json({ status: "SUCCESS", message: "User created.", data: { email } });
+      //! end JWT and cookie
     } catch (error) {
       console.log("Can't create user!");
       console.log(error);

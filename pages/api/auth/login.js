@@ -1,6 +1,8 @@
 import { verifyPassword } from "@/helpers/BcryptPassword";
 import ConnectToDB from "@/helpers/ConnectToDB";
 import { userModel } from "@/models/userModel";
+import { createJWT } from "@/helpers/JsonWebToken";
+import { serialize } from "cookie";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return;
@@ -40,7 +42,19 @@ export default async function handler(req, res) {
   } else {
     const passVerify = await verifyPassword(password, user.password);
     if (!passVerify) return res.status(422).json({ error: "incorrectPassword", status: "FAILED", message: "Email or password is incorrect!" });
+    //! JWT and cookie
+    const token = createJWT({ email: user.email }, process.env.JWT_SECRET_KEY);
     console.log("Logged in successfully.");
-    res.status(200).json({ status: "SUCCESS", message: "Logged in successfully", data: { email } });
+    res
+      .status(200)
+      .setHeader(
+        "Set-Cookie",
+        serialize("token", token, {
+          httpOnly: true,
+          maxAge: 24 * 60 * 60,
+          path: "/",
+        })
+      )
+      .json({ status: "SUCCESS", message: "Logged in successfully", data: { email } });
   }
 }
