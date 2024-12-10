@@ -13,3 +13,20 @@ function dashbord() {
 }
 
 export default dashbord;
+
+export async function getServerSideProps({ req }) {
+  const { token } = req.cookies;
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      data: "",
+    },
+  };
+}
