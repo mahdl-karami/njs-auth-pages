@@ -53,7 +53,10 @@ function Form({ formType }) {
   //! check response (success or error)
   useEffect(() => {
     if (res?.error) setError({ [res?.error]: true });
-    if (res?.status == "SUCCESS") setError({});
+    if (res?.status == "SUCCESS") {
+      setError({});
+      router.push("/dashbord");
+    }
   }, [res]);
 
   return (
