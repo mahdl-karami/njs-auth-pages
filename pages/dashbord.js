@@ -1,4 +1,5 @@
 import AnimationBox from "@/components/AnimationsBox";
+import { verify } from "jsonwebtoken";
 import React from "react";
 
 function dashbord() {
@@ -24,9 +25,21 @@ export async function getServerSideProps({ req }) {
       },
     };
   }
-  return {
-    props: {
-      data: "",
-    },
-  };
+
+  try {
+    const res = verify(token, process.env.JWT_SECRET_KEY);
+    return {
+      props: {
+        email: res?.email,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 }
