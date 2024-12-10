@@ -1,3 +1,4 @@
+import { verifyPassword } from "@/helpers/BcryptPassword";
 import ConnectToDB from "@/helpers/ConnectToDB";
 import { userModel } from "@/models/userModel";
 
@@ -37,7 +38,8 @@ export default async function handler(req, res) {
       error: "userNotExist",
     });
   } else {
-    if (user.password !== password) return res.status(422).json({ error: "incorrectPassword", status: "FAILED", message: "Email or password is incorrect!" });
+    const passVerify = await verifyPassword(password, user.password);
+    if (!passVerify) return res.status(422).json({ error: "incorrectPassword", status: "FAILED", message: "Email or password is incorrect!" });
     console.log("Logged in successfully.");
     res.status(200).json({ status: "SUCCESS", message: "Logged in successfully", data: { email } });
   }

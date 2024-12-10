@@ -1,3 +1,4 @@
+import { HashPassword } from "@/helpers/BcryptPassword";
 import ConnectToDB from "@/helpers/ConnectToDB";
 import { userModel } from "@/models/userModel";
 
@@ -20,12 +21,13 @@ export default async function handler(req, res) {
   //! end connect to database
 
   //! inputs validation
-  if (!email || !password)
+  if (!email || !password) {
     return res.status(422).json({
       error: !email && !password ? "invalidData" : !email ? "invalidEmail" : "invalidPassword",
       status: "FAILED",
       message: "Please enter valid value!",
     });
+  }
   //! end inputs validation
 
   //! check user email && create user in database
@@ -37,8 +39,9 @@ export default async function handler(req, res) {
       error: "userExist",
     });
   } else {
+    const hashedPassword = await HashPassword(password);
     try {
-      await userModel.create({ email, password });
+      await userModel.create({ email, password: hashedPassword });
       console.log("User created.");
       res.status(200).json({ status: "SUCCESS", message: "User created.", data: { email } });
     } catch (error) {
