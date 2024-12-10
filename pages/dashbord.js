@@ -1,13 +1,53 @@
-import AnimationBox from "@/components/AnimationsBox";
+//? import libs
 import { verify } from "jsonwebtoken";
-import React from "react";
+import { serialize } from "cookie";
+//? import icons
+import { FaGoogle, FaFacebookF, FaTwitter, FaGithub } from "react-icons/fa";
+//? import components
+import AnimationBox from "@/components/AnimationsBox";
+//? import hooks
+import { useRouter } from "next/router";
 
-function dashbord() {
+function dashbord({ email }) {
+  const router = useRouter();
+
+  function logOutHandler() {
+    fetch("/api/auth/signout")
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        router.push("/");
+      });
+  }
+
   return (
     <>
       <AnimationBox />
       <div className="box-content">
-        <h3>Welcome.</h3>
+        <h3 className="form-buttons">Welcome.</h3>
+        <div className="dashbord">
+          <div>
+            <p>Email : </p>
+            <h3>{email}</h3>
+          </div>
+          <button className="submit-btn" onClick={() => logOutHandler()}>
+            Logout
+          </button>
+        </div>
+        <div className="social-media-icons">
+          <span>
+            <FaGoogle />
+          </span>
+          <span>
+            <FaFacebookF />
+          </span>
+          <span>
+            <FaTwitter />
+          </span>
+          <span>
+            <FaGithub />
+          </span>
+        </div>
       </div>
     </>
   );

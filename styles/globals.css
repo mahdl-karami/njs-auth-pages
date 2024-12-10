@@ -211,6 +211,13 @@ button {
   font-size: 0.8em;
 }
 
+.dashbord {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 50%;
+}
+
 @media only screen and (max-width: 850px) {
   /** start form  */
   .box {
