@@ -8,7 +8,7 @@ import AnimationBox from "@/components/AnimationsBox";
 //? import hooks
 import { useRouter } from "next/router";
 
-function dashbord({ email }) {
+function Dashbord({ email }) {
   const router = useRouter();
 
   function logOutHandler() {
@@ -53,7 +53,7 @@ function dashbord({ email }) {
   );
 }
 
-export default dashbord;
+export default Dashbord;
 
 export async function getServerSideProps({ req }) {
   const { token } = req.cookies;
